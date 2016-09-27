@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#clock {
+		    width: 300px;
+		    text-align: center;
+		    background: #1a1a1a;
+		    margin: 10px auto;
+		    padding: 20px 0;
+		    color:#fff;
+		}
+		#clock span{
+			background-color: #fff;
+			display: inline-block;
+			color:#000;
+			padding: 2px;
+			margin:3px;
+			border: 2px solid #f0f0f0;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<div id="clock">
+	<span>16</span>点<span>34</span>分<span>19</span>秒
+</div>
+<script type="text/javascript">
+	window.onload = function ()
+{
+	var oClock = document.getElementById("clock");	
+	var aSpan = oClock.getElementsByTagName("span");
+		
+	setInterval(getTimes, 1000);
+	getTimes();
+	function getTimes ()
+	{
+		var oDate = new Date();
+		var aDate = [oDate.getHours(), oDate.getMinutes(), oDate.getSeconds()];
+		for (var i in aDate) aSpan[i].innerHTML = format(aDate[i])
+	}
+	function format(a)
+	{
+		return a.toString().replace(/^(\d)$/, "0$1")	
+	}
+}
+</script>
+</body>
+</html>
