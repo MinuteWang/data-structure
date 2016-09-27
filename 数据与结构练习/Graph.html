@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script>
+	function Vertex(label) {
+		this.label = label;
+		this.wasVisited = wasVisited;
+	}
+	function Graph(v) {
+		this.vertices = v;
+		this.edges = 0;
+		this.adj = [];
+		for (var i = 0; i < this.vertices; ++i) {
+			this.adj[i] = [];
+			this.adj[i].push("");
+		}
+		this.addEdge = addEdge;
+		this.showGraph = showGraph;
+		this.dfs = dfs;
+		this.marked = [];
+		for (var i = 0; i < this.vertices; ++i) {
+			this.marke[i] = false;
+		}
+		this.edgeTo = [];
+	}
+	function addEdge(v,w) {
+		this.adj[v].push(w);
+		this.adj[w].push(v);
+		this.edges++;
+	}
+
+	function showGraph() {
+		for (var i = 0; i < this.vertices; ++i) {
+			console.log(i + "->");	
+			for (var j = 0; j < this.vertices; ++j) {
+				if (this.adj[i][j] != undefined) {
+					console.log(this.adj[i][j]);
+				}
+			}
+		}
+	}
+	function dfs(v) {
+		this.marked[v] = true;
+		if (this.adj[v] != undefined) {
+			console.log("Visited vertex: " + v);
+		}
+		for each(var w in this.adj[v]) {
+			if (!this.marked[w]) {
+				this.dfs(w);
+			}
+		}
+	}
+
+	function bfs(s) {
+		var queue = [];
+		this.marked[s] = true;
+		queue.push(s);
+		while (queue.length > 0) {
+			var v = queue.shift();
+			if (this.adj[v] !== undefined) {
+				if (!this.marked[w]) {
+					this.marked[w] = v;
+					queue.push(w);
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>

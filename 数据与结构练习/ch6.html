@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script>
+	function Node(element) {
+		this.element = element;
+		this.next = null;
+	}
+	function List() {
+		this.head = new Node(1);
+		this.length = 1;
+		this.getLength = getLength;
+		this.build = build;
+		this.find = find;
+		this.findPrevious = findPrevious;
+		this.display = display;
+		this.remove = remove;
+	}
+	function build(number) {
+		this.length = number;
+		var node = this.head;
+		for(var i = 2; i < number+1; i++) {
+			node.next = new Node(i);
+			node = node.next;
+		}
+		node.next = this.head;
+	}
+	function getLength() {
+		return this.length;
+	}
+	function findPrevious(item) {
+        var currNode = this.head;
+        while (currNode.next.element != item) {
+        	currNode = currNode.next;
+        }
+        return currNode;
+	}
+	function find(item) {
+		var currNode = this.head;
+		while (currNode.element  != item) {
+			currNode = currNode.next;
+		}
+		return currNode;
+	}
+	function display() {
+		var currNode = this.head;
+        for (var i = 0; i < this.length; ++i) {
+        	console.log(currNode.next.element);
+        	currNode = currNode.next;
+        }
+	}
+	function remove(item) {
+        var prevNode = this.findPrevious(item);
+        if (!(prevNode.next == null)) {
+        	prevNode.next = prevNode.next.next;
+        	this.length--;
+        }
+	}
+	function saveLife(n,m) {
+		var manList = new List();
+		var currNode = manList.head;
+		var i = 1;
+		manList.build(n);
+		var length = manList.getLength()
+		while (length >= m) {
+           currNode = currNode.next;
+           i++;
+           while(i == m) {
+           	var kill = currNode;
+           	currNode = currNode.next;
+           	manList.remove(kill.element);
+           	length--;
+           	i = 1;
+           }
+		}
+		manList.display();
+	}
+</script>
+</body>
+</html>
